@@ -1,1 +1,9 @@
-This repo contains the codes for Task 1.a and 1.b of training Part 1.
+It is a sample banking application system that has command line interface. Following are the use cases for this code.
+
+User can perform following operations:
+Check balance, 
+Draw money, 
+Deposit bills,
+Transfer money, 
+Type of account, 
+Compare accounts (three comparisons: which account is larger, smaller or equal)
