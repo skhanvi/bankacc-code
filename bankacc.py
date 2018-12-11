@@ -1,7 +1,7 @@
 """
 This is sample program to demonstrate the functionality of bank account
 """
-
+Please mention pylint score here e.g. 9.00 etc
 # pylint: disable=superfluous-parens
 # pylint: disable=too-few-public-methods
 # pylint: disable=literal-comparison
@@ -23,8 +23,10 @@ class Account(object):
     """This is Account class"""
     def __init__(self, account_title, account_number, account_balance):
         """This is initialization of Account"""
+        assert all three parameters types e.g. account title/number should -be of basestring, balance should be of int or float type and save it as float
         self.account_title = account_title
         self.account_number = account_number
+        save balance as floating point number
         self.account_balance = account_balance
 
     def check_balance(self):
@@ -33,9 +35,13 @@ class Account(object):
 
     def withdraw_money(self):
         """This withdraws money from account_balance"""
+        please use proper string formatting all around the prints by following this, new style, https://realpython.com/python-string-formatting/
         print('Available Balance: ', self.account_balance)
+        No input validation and exception handling
         amount_to_draw = float(input('Enter the amount to withdraw: '))
+        Should it take indefinite tries here
         while amount_to_draw > self.account_balance:
+            No input validation and exception handling
             amount_to_draw = float(input('Enter the correct amount again: '))
 
         self.account_balance = self.account_balance - amount_to_draw
@@ -45,6 +51,7 @@ class Account(object):
         """This functions transfers money from one account to another"""
         while self.account_balance <= amount_to_transfer:
             self.check_balance()
+            ditto
             amount_to_transfer = float(input('You do not have enough balance\n'
                                              'Enter the correct amount again: '))
         self.account_balance -= amount_to_transfer
