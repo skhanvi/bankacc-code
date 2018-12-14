@@ -1,7 +1,7 @@
 """
 This is sample program to demonstrate the functionality of bank account
 """
-
+Please mention pylint score here e.g. 9.00 etc
 # pylint: disable=superfluous-parens
 # pylint: disable=too-few-public-methods
 # pylint: disable=literal-comparison
@@ -23,8 +23,10 @@ class Account(object):
     """This is Account class"""
     def __init__(self, account_title, account_number, account_balance):
         """This is initialization of Account"""
+        assert all three parameters types e.g. account title/number should -be of basestring, balance should be of int or float type and save it as float
         self.account_title = account_title
         self.account_number = account_number
+        save balance as floating point number
         self.account_balance = account_balance
 
     def check_balance(self):
@@ -33,9 +35,13 @@ class Account(object):
 
     def withdraw_money(self):
         """This withdraws money from account_balance"""
+        please use proper string formatting all around the prints by following this, new style, https://realpython.com/python-string-formatting/
         print('Available Balance: ', self.account_balance)
+        No input validation and exception handling
         amount_to_draw = float(input('Enter the amount to withdraw: '))
+        Should it take indefinite tries here
         while amount_to_draw > self.account_balance:
+            No input validation and exception handling
             amount_to_draw = float(input('Enter the correct amount again: '))
 
         self.account_balance = self.account_balance - amount_to_draw
@@ -45,6 +51,7 @@ class Account(object):
         """This functions transfers money from one account to another"""
         while self.account_balance <= amount_to_transfer:
             self.check_balance()
+            ditto
             amount_to_transfer = float(input('You do not have enough balance\n'
                                              'Enter the correct amount again: '))
         self.account_balance -= amount_to_transfer
@@ -53,6 +60,7 @@ class Account(object):
 
     def deposit_bills(self, bill_to_deposit):
         """This function deposits bills"""
+        assert function arguments in each method, https://www.programiz.com/python-programming/assert-statement
         if self.account_balance <= bill_to_deposit.bill_amount:
             print('You do not have enough balance in account\n'
                   'Please use cash to deposit bill!')
@@ -80,11 +88,13 @@ class Savings(Account):
     """This is Saving class"""
     def __init__(self, account_type, account_title, account_number, account_balance):
         """This is initialization of Savings(Account)"""
+        please assert account type here either that is valid or not
         self.account_type = account_type
         super(Savings, self).__init__(account_title, account_number, account_balance)
 
     def print_type(self):
         """This prints account type"""
+        ditto, use proper string formatting in all print statements
         print('Your Account Type is: ', self.account_type)
 
 
@@ -97,6 +107,7 @@ class Current(Account):
 
     def print_type(self):
         """This prints account type"""
+        ditto, use proper string formatting
         print('Your Account Type is: ', self.account_type)
 
 
@@ -105,10 +116,13 @@ def main():
     curr1 = Current("Savings", "Account1", 1, 500.0)
     sav1 = Current("Current", "Account2", 2, 100.0)
     curr3 = Current("Current", "Account2", 3, 1000.0)
+    please use https://factoryboy.readthedocs.io/en/latest/internals.html to create dummy accounts
+    you should create/load dummy accounts through a separate method, keep your main code as simple as possible
+    no comments in the code
     # bill1 = Bill("phone", 200)
 
     accounts = [curr1, sav1, curr3]
-
+    
     login = int(input("Enter you account number: "))
 
     print("Here is the menu for your bank account")
@@ -116,11 +130,12 @@ def main():
           "\n3.Draw Money\n4.Transfer money"
           "\n5.Pay bill\n6.Compare account"
           "\n7.Quit")
-
+    no exception handling here
     menu_input = int(input("Enter the number from menu: "))
 
     while menu_input is not 7:
         if menu_input is 1:
+            use proper method to cater the logged in account or search an account, this is not good
             accounts[login - 1].print_type()
         elif menu_input is 2:
             accounts[login - 1].check_balance()
@@ -129,6 +144,7 @@ def main():
         elif menu_input is 4:
             money = int(input("Enter the amount to transfer: "))
             account = int(input("Enter the account number to transfer money: "))
+            please improve this, this is not correct way to search an account
             while account > len(accounts):
                 account = int(input("Wrong input enter again: "))
             accounts[login - 1].transfer_money(money, accounts[account - 1])
@@ -139,14 +155,18 @@ def main():
             accounts[login - 1].deposit_bills(bill)
         elif menu_input is 6:
             account = int(input("Enter the account to compare with: "))
+            ditto
             while account > len(accounts):
                 account = int(input("Wrong input enter again: "))
+            please compare accounts in separate method
+            what do you think, where you should compare accounts in a class method or? 
             if accounts[login - 1] < accounts[account - 1]:
                 print("Your account has less balance")
             elif accounts[login - 1] > accounts[account - 1]:
                 print("Your account has more balance")
             else:
                 print("Your account has equal balance")
+        please validate the input there and give them a proper message?
         menu_input = int(input("Enter again: "))
 
 
